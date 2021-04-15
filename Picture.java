@@ -363,12 +363,55 @@ public class Picture
       System.out.println("There was an error writing to "+fileName);
       e.printStackTrace();
       return false;
-    }
+    } 
   }
 
    ////////////////////// methods ///////////////////////////////////////
-
+  //Written by: Jacob Lujan 
+  //This code will mirror the image from left to right 
+  public void mirrorLeftToRight() 
+  { 
+    //create a Pixel array 
+    Pixel[][]pixels = this.getPixels2D(); 
+    //Create 2 Pixel variables 
+    Pixel leftPixel = null; Pixel rightPixel = null; 
+    //loop through the rows 
+    for(int row = 0; row<pixels.length; row++) 
+    { 
+      //loop through the columns 
+      for(int col = 0; col<pixels[0].length/2; col++) 
+      { 
+        //assign leftPixel 
+        leftPixel = pixels[row][col]; 
+        //assign rightPixel 
+        rightPixel = pixels[row][pixels[0].length-1-col]; 
+        //set the color of the right pixel to the color of the left pixel 
+        rightPixel.setColor(leftPixel.getColor()); 
+      }
+    }
+  }
    
-
+  public void mirrorTopToBottom() 
+  { 
+    //create a Pixel array 
+    Pixel[][]pixels = this.getPixels2D(); 
+    //Create 2 Pixel variables 
+    Pixel topPixel = null; 
+    Pixel bottomPixel = null; 
+    //loop through the rows 
+    for(int row = 0; row<pixels.length/2; row++) 
+    { 
+      //loop through the columns 
+      for(int col = 0; col<pixels[0].length; col++)
+      { 
+        //assign leftPixel 
+        topPixel = pixels[row][col]; 
+        //assign rightPixel 
+        bottomPixel = pixels[pixels.length-1-row][col]; 
+        //set the color of the right pixel to the color of the left pixel 
+        bottomPixel.setColor(topPixel.getColor()); 
+      }
+    }
+  }
 
 } // this } is the end of class Picture, put all new methods before this
